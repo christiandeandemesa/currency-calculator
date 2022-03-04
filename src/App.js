@@ -23,10 +23,12 @@ function App() {
   const [to, setTo] = useState('eur');
   // The currencies state holds the abbreviations of all the currencies from apiData.
   const [currencies, setCurrencies] = useState([]);
+  // The currNames state holds the full names of the currencies.
+  const [currNames, setCurrNames] = useState([]);
   // The output state holds what the user sees by Converted Amount.
   const [output, setOutput] = useState(0);
 
-  // This will initially make an API call with usd as from's initial state (line 15).
+  // This will initially make an API call with usd as from's initial state (line 21).
   useEffect(() => {
     // Axios.get gets a promise from the API, and what is returned is a response object.
     Axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${from}.json`)
@@ -37,18 +39,31 @@ function App() {
         and the conversion rate as a number for its value.
         */
         setApiData(res.data[from]);
-      })
+      });
   // This useEffect will run again anytime the from state is changed.
   }, [from]);
 
-  // This will initially set the currencies state to hold the currency abbreviations for usd (line 35).
+  // This will initially set the currencies state to hold the currency abbreviations for usd (line 41).
   useEffect(() => {
     // Sets the currencies state as all of the keys/currency abbreviations (Object.keys()) in the apiData state.
     setCurrencies(Object.keys(apiData));
     // Runs the convert function.
     convert();
   // This useEffect will run again anytime the apiData state is changed.
-  }, [apiData])
+  }, [apiData]);
+
+  // This will make another API call to get all of the currency full names.
+  useEffect(() => {
+    Axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json`)
+      .then(res => {
+        /*
+        The data is an object of key-value pairs where the key is the currency's abbreviation, and the value is the currency's full name.
+        Sets alll of the values in the currNames state.
+        */
+        setCurrNames(Object.values(res.data));
+      });
+  // This useEffect will only run once upon rendering.
+  }, []);
 
   // Function to convert the Initial Amount in the From currency to the To currency.
   function convert() {
@@ -68,6 +83,15 @@ function App() {
     setTo(temp);
   }
 
+  // options is going to be the array we are passing into the Dropdown component (line 112).
+  const options = currencies.map((key, value) => {
+    /*
+    We map over the currencies state's array and return a new array, options, where each element is a string interpolation of an element in currencies (key) and an 
+    element in currNames (currNames[value]).
+    */
+    return `${key} - ${currNames[value]}`;
+  });
+
   // Everything within return is what the user will visually see.
   return (
     // Whatever React returns must be enclosed within one parent tag.
@@ -85,9 +109,12 @@ function App() {
             is the entire Dropdown component) and sets the from state as the value within the component, and a value which is tied to the currency abbreviation in the 
             from state. */}
         <Dropdown 
-          options={currencies}
-          // onChange triggers whenever a different country abbreviation is selected.
-          onChange={e => setFrom(e.value)}
+          options={options}
+          /*
+          onChange triggers whenever a different country abbreviation is selected.
+          For the code to work, we are only grabbing the abbreviation by splitting the string by its whitespaces, and grabbing the abbreviation at the first index.
+          */
+          onChange={e => setFrom(e.value.split(' ')[0])}
           value={from}
           />
         {/* This is the arrow icon. */}
@@ -98,8 +125,8 @@ function App() {
           />
         <h3>To</h3>
         <Dropdown 
-          options={currencies}
-          onChange={e => setTo(e.target.value)}
+          options={options}
+          onChange={e => setTo(e.value.split(' ')[0])}
           value={to}
         />
       </div>
@@ -127,6 +154,8 @@ function App() {
 
     </div>
   );
+
 }
 
+// Exports this component to be imported by other components.
 export default App;
