@@ -99,57 +99,71 @@ function App() {
 
       {/* This holds the title. */}
       <div id='header'>
-        <h1>Currency Calculator</h1>
+        <h1 className='title'>Currency Calculator</h1>
       </div>
 
       {/* This holds the dropdown menus and the arrow icon. */}
       <div id='currencies'>
-        <h3>From</h3>
-        {/* The Dropdown component takes an array for its options (i.e. the options the user can select in the menu), onChange takes the event (abbreviated as e which 
-            is the entire Dropdown component) and sets the from state as the value within the component, and a value which is tied to the currency abbreviation in the 
-            from state. */}
-        <Dropdown 
-          options={options}
-          /*
-          onChange triggers whenever a different country abbreviation is selected.
-          For the code to work, we are only grabbing the abbreviation by splitting the string by its whitespaces, and grabbing the abbreviation at the first index.
-          */
-          onChange={e => setFrom(e.value.split(' ')[0])}
-          value={from}
+        <div id='from'>
+          <h3 className='label'>From</h3>
+          {/* The Dropdown component takes an array for its options (i.e. the options the user can select in the menu), onChange takes the event (abbreviated as e which 
+              is the entire Dropdown component) and sets the from state as the value within the component, and a value which is tied to the currency abbreviation in the 
+              from state. */}
+          <Dropdown 
+            options={options}
+            /*
+            onChange triggers whenever a different country abbreviation is selected.
+            For the code to work, we are only grabbing the abbreviation by splitting the string by its whitespaces, and grabbing the abbreviation at the first index.
+            */
+            onChange={e => setFrom(e.value.split(' ')[0])}
+            value={from}
+            className='menu'
           />
+        </div>
         {/* This is the arrow icon. */}
-        <BsArrowRepeat  
-          size='30px'
+        <BsArrowRepeat
           // I used an inline function for all my functions even if it did not require arguments to make it easier for me. Could have put onClick={flip} instead.
           onClick={() => flip()} 
-          />
-        <h3>To</h3>
-        <Dropdown 
-          options={options}
-          onChange={e => setTo(e.value.split(' ')[0])}
-          value={to}
+          className='icon'
         />
+        <div id='to'>
+          <h3 className='label'>To</h3>
+          <Dropdown 
+            options={options}
+            onChange={e => setTo(e.value.split(' ')[0])}
+            value={to}
+            className='menu'
+          />
+        </div>
       </div>
 
       {/* This holds the input field, convert button, and displays the converted amount. */}
       <div id='amounts'>
-        <h3>Initial Amount</h3>
-        {/* I used type='number' to avoid the user from inputting a string, value is tied to the number in the input state, set the min to 0.00 to avoid negative 
-            numbers, step increments/decrements the number by 0.01 if the user uses the arrow within the input, and onChange it takes the event's target's (The input 
-            tag is the target that triggered the onChange event) value and sets it in the input state. */}
-        <input 
-          type='number'
-          value={input}
-          min='0.00'
-          step='0.01'
-          // onChange occurs whenever the user types or deletes a character.
-          onChange={e => setInput(e.target.value)} 
-        />
-        {/* onClick occurs when this button is clicked, and it runs the convert function. */}
-        <button onClick={() => convert()}>Convert</button>
-        <h3>Converted Amount</h3>
-        {/* Used string interpolation to display the values in the output (number) and to (currency abbreviation) state, and fixed output to two decimal places. */}
-        <p>{`${output.toFixed(2)} ${to}`}</p>
+        <div id='initial'>
+          <h3 className='label'>Initial Amount</h3>
+          <div className='form'>
+            {/* I used type='number' to avoid the user from inputting a string, value is tied to the number in the input state, set the min to 0.00 to avoid negative 
+                numbers, step increments/decrements the number by 0.01 if the user uses the arrow within the input, and onChange it takes the event's target's (The input 
+                tag is the target that triggered the onChange event) value and sets it in the input state. */}
+            <input 
+              type='number'
+              value={input}
+              min='0.00'
+              step='0.01'
+              // onChange occurs whenever the user types or deletes a character.
+              onChange={e => setInput(e.target.value)}
+            />
+            {/* onClick occurs when this button is clicked, and it runs the convert function. */}
+            <button onClick={() => convert()}>Convert</button>
+          </div>
+        </div>
+        <div id='convert'>
+          <h3 className='label'>Converted Amount</h3>
+          {/* Used string interpolation to display the values in the output (number) and to (currency abbreviation) state, and fixed output to two decimal places. */}
+          <div>
+            <p className='text'>{`${output.toFixed(2)} ${to}`}</p>
+          </div>
+        </div>
       </div>
 
     </div>

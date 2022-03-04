@@ -1,5 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-  
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Mukta:wght@200&family=Playfair+Display:ital,wght@1,700&display=swap');
+$shamrock: rgb(31, 236, 31);
+
 .App {
-  
+    height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+
+    #header {
+        margin-top: 1rem;
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700px;
+            font-style: italic;
+            font-size: 2.3rem;
+        }
+    }
+
+    #currencies {
+        width: 85vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+
+        #from {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .label {
+                font-family: 'Mukta', sans-serif;
+                font-weight: 200px;
+                font-size: 1.75rem;
+            }
+
+            .menu {
+                font-family: 'Lato', sans-serif;
+                font-weight: 300px;
+                font-size: 1.2rem;
+                width: 75%;
+            }
+        }
+
+        .icon {
+            height: 4rem;
+            width: 4rem;
+            transition: 0.7s ease;
+        }
+
+        .icon:hover {
+            color: $shamrock;
+            transition: 0.4s ease;
+            animation: rotation infinite 3s linear;
+            cursor: pointer;
+        }
+
+        #to {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .label {
+                font-family: 'Mukta', sans-serif;
+                font-weight: 200px;
+                font-size: 1.75rem;
+                margin-left: 4%;
+            }
+
+            .menu {
+                font-family: 'Lato', sans-serif;
+                font-weight: 300px;
+                font-size: 1.2rem;
+                width: 75%;
+            }
+        }
+    }
+
+    #amounts {
+        width: 85vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+
+        #initial {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .label {
+                font-family: 'Mukta', sans-serif;
+                font-weight: 200px;
+                font-size: 1.75rem;
+            }
+
+            .form {
+                display: flex;
+                gap: 5%;
+
+                input {
+                    font-family: 'Lato', sans-serif;
+                    font-weight: 300px;
+                    font-size: 1.2rem;
+                    width: 68%;
+                }
+
+                button {
+                    font-family: 'Lato', sans-serif;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    width: 27%;
+                }
+
+                button:hover {
+                    background: $shamrock;
+                    transition: 0.6s ease;
+                }
+            }
+        }
+
+        #convert {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .label {
+                font-family: 'Mukta', sans-serif;
+                font-weight: 200px;
+                font-size: 1.75rem;
+            }
+            div {
+                background: white;
+
+                .text {
+                    color: black;
+                    font-family: 'Lato', sans-serif;
+                    font-weight: 300px;
+                    font-size: 1.2rem;
+                    margin-left: 2%;
+                }
+            }
+        }
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
