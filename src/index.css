@@ -30,6 +30,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #root, #__next {
+  /* Cannot find a suitable alternative for Internet Explorer. Please let me know if you have advice. */
   isolation: isolate;
 }
 

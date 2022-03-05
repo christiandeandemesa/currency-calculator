@@ -83,7 +83,7 @@ function App() {
     setTo(temp);
   }
 
-  // options is going to be the array we are passing into the Dropdown component (line 112).
+  // options is going to be the array we are passing into the Dropdown component (line 113).
   const options = currencies.map((key, value) => {
     /*
     We map over the currencies state's array and return a new array, options, where each element is a string interpolation of an element in currencies (key) and an 
@@ -168,7 +168,6 @@ function App() {
 
     </div>
   );
-
 }
 
 // Exports this component to be imported by other components.

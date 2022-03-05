@@ -1,151 +1,123 @@
+// Imports google fonts.
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Mukta:wght@200&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+// Sass variables.
+$title-font: 'Playfair Display', serif;
+$label-font: 'Mukta', sans-serif;
+$text-font: 'Lato', sans-serif;
 $shamrock: rgb(31, 236, 31);
 
+// Sass mixin with a value ($direction).
+@mixin flexbox($direction: column) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+// Group styling.
+#currencies, #amounts {
+    // Example of using a mixin.
+    @include flexbox;
+    align-items: center;
+}
+
+.label {
+    // Example of using a variable.
+    font-family: $label-font;
+    font-weight: 200px;
+}
+
+.menu {
+    font-family: $text-font;
+    font-weight: 300px;
+}
+
+input, button, .text {
+    font-family: $text-font;
+}
+
+/*
+Individual styling using Sass nesting.
+The App class is the parent tag holding all of the return information.
+*/
 .App {
     height: 100vh;
     background: black;
     color: white;
-    display: flex;
-    flex-direction: column;
+    @include flexbox;
     align-items: center;
-    gap: 3rem;
 
+    // The header id holds the title: Currency Calculator.
     #header {
-        margin-top: 1rem;
+        text-align: center;
 
         .title {
-            font-family: 'Playfair Display', serif;
+            font-family: $title-font;
             font-weight: 700px;
             font-style: italic;
-            font-size: 2.3rem;
         }
     }
 
+    // The currencies id holds the from and to input fields, and the arrow icon.
     #currencies {
-        width: 85vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-
-        #from {
+        #from, #to {
             width: 100%;
-            display: flex;
+            // Example of using a mixin that changes the value.
+            @include flexbox($direction: row);
             justify-content: space-between;
             align-items: center;
-
-            .label {
-                font-family: 'Mukta', sans-serif;
-                font-weight: 200px;
-                font-size: 1.75rem;
-            }
-
-            .menu {
-                font-family: 'Lato', sans-serif;
-                font-weight: 300px;
-                font-size: 1.2rem;
-                width: 75%;
-            }
         }
 
         .icon {
-            height: 4rem;
-            width: 4rem;
             transition: 0.7s ease;
         }
 
+        // This styling applies when the user's cursor hovers over the arrow icon.
         .icon:hover {
             color: $shamrock;
             transition: 0.4s ease;
+            // Uses the rotation keyframe animation below.
             animation: rotation infinite 3s linear;
             cursor: pointer;
         }
-
-        #to {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .label {
-                font-family: 'Mukta', sans-serif;
-                font-weight: 200px;
-                font-size: 1.75rem;
-                margin-left: 4%;
-            }
-
-            .menu {
-                font-family: 'Lato', sans-serif;
-                font-weight: 300px;
-                font-size: 1.2rem;
-                width: 75%;
-            }
-        }
     }
 
+    // The amounts id holds the initial amount input field, button, and converted amount output.
     #amounts {
-        width: 85vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2.5rem;
+        #initial, #convert {
+            width: 100%;
+            @include flexbox;
+        }
 
         #initial {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
             gap: 1rem;
 
-            .label {
-                font-family: 'Mukta', sans-serif;
-                font-weight: 200px;
-                font-size: 1.75rem;
-            }
-
             .form {
-                display: flex;
+                @include flexbox($direction: row);
                 gap: 5%;
 
                 input {
-                    font-family: 'Lato', sans-serif;
                     font-weight: 300px;
-                    font-size: 1.2rem;
-                    width: 68%;
                 }
 
                 button {
-                    font-family: 'Lato', sans-serif;
                     font-weight: bold;
-                    font-size: 1.2rem;
-                    width: 27%;
                 }
 
                 button:hover {
                     background: $shamrock;
                     transition: 0.6s ease;
+                    cursor: pointer;
                 }
             }
         }
 
         #convert {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-
-            .label {
-                font-family: 'Mukta', sans-serif;
-                font-weight: 200px;
-                font-size: 1.75rem;
-            }
             div {
                 background: white;
 
                 .text {
                     color: black;
-                    font-family: 'Lato', sans-serif;
                     font-weight: 300px;
-                    font-size: 1.2rem;
                     margin-left: 2%;
                 }
             }
@@ -153,11 +125,483 @@ $shamrock: rgb(31, 236, 31);
     }
 }
 
+// Utilizes keyframe animations to make the arrow icon rotate continuously.
 @keyframes rotation {
+    // from indicates the beginning of the animation (0%).
     from {
         transform: rotate(0deg);
     }
+    // to indicates the ending of the animation (100%).
     to {
         transform: rotate(360deg);
+    }
+}
+
+// Galaxy Fold sizing.
+@media (max-width: 359px) {
+    #currencies, #amounts {
+        width: 85vw;
+    }
+    
+    .label {
+        font-size: 1.75rem;
+    }
+    
+    .menu {
+        font-size: 1.2rem;
+        width: 65%;
+    }
+    
+    input, button, .text {
+        font-size: 1.2rem;
+    }
+    
+    .App {
+        gap: 2.5rem;
+    
+        #header {
+            margin-top: 1rem;
+    
+            .title {
+                font-size: 2.8rem;
+            }
+        }
+    
+        #currencies {
+            gap: 1.5rem;
+    
+            .icon {
+                height: 3rem;
+                width: 3rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 6%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 2rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 60%;
+                    }
+    
+                    button {
+                        width: 35%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// Samsung Galaxy S8+ and iPhone SE sizing.
+@media (min-width: 360px) and (max-width: 389px) {
+    #currencies, #amounts {
+        width: 85vw;
+    }
+    
+    .label {
+        font-size: 1.75rem;
+    }
+    
+    .menu {
+        font-size: 1.2rem;
+        width: 73%;
+    }
+    
+    input, button, .text {
+        font-size: 1.2rem;
+    }
+    
+    .App {
+        gap: 2rem;
+    
+        #header {
+            margin-top: 0.5rem;
+    
+            .title {
+                font-size: 3.8rem;
+            }
+        }
+    
+        #currencies {
+            gap: 1rem;
+    
+            .icon {
+                height: 4rem;
+                width: 4rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 6%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 1.5rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 60%;
+                    }
+    
+                    button {
+                        width: 35%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// iPhone 12 Pro, Pixel 5, Samsung Galaxy A51/71, Samsung Galaxy S20 Ultra, and iPhone XR sizing.
+@media (min-width: 390px) and (max-width: 539px) {
+    #currencies, #amounts {
+        width: 85vw;
+    }
+    
+    .label {
+        font-size: 1.75rem;
+    }
+    
+    .menu {
+        font-size: 1.2rem;
+        width: 75%;
+    }
+    
+    input, button, .text {
+        font-size: 1.2rem;
+    }
+    
+    .App {
+        gap: 2rem;
+    
+        #header {
+            margin-top: 0.5rem;
+    
+            .title {
+                font-size: 4.4rem;
+            }
+        }
+    
+        #currencies {
+            gap: 1rem;
+    
+            .icon {
+                height: 6rem;
+                width: 6rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 5%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 1.5rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 60%;
+                    }
+    
+                    button {
+                        width: 35%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// Surface Duo sizing.
+@media (min-width: 540px) and (max-width: 767px) {
+    #currencies, #amounts {
+        width: 85vw;
+    }
+    
+    .label {
+        font-size: 1.75rem;
+    }
+    
+    .menu {
+        font-size: 1.2rem;
+        width: 80%;
+    }
+    
+    input, button, .text {
+        font-size: 1.2rem;
+    }
+    
+    .App {
+        gap: 3rem;
+    
+        #header {
+            margin-top: 2rem;
+    
+            .title {
+                font-size: 3.3rem;
+            }
+        }
+    
+        #currencies {
+            gap: 2rem;
+    
+            .icon {
+                height: 5rem;
+                width: 5rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 3%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 2rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 60%;
+                    }
+    
+                    button {
+                        width: 35%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// iPad Mini and iPad Air sizing
+@media (min-width: 768px) and (max-width: 911px) {
+    #currencies, #amounts {
+        width: 85vw;
+    }
+    
+    .label {
+        font-size: 2.5rem;
+    }
+    
+    .menu {
+        font-size: 1.8rem;
+        width: 80%;
+    }
+    
+    input, button, .text {
+        font-size: 1.8rem;
+    }
+    
+    .App {
+        gap: 3rem;
+    
+        #header {
+            margin-top: 2rem;
+    
+            .title {
+                font-size: 4.6rem;
+            }
+        }
+    
+        #currencies {
+            gap: 2rem;
+    
+            .icon {
+                height: 8rem;
+                width: 8rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 3%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 2rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 60%;
+                    }
+    
+                    button {
+                        width: 35%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// Surface Pro 7 sizing.
+@media (min-width: 912px) and (max-width: 1024px) {
+    #currencies, #amounts {
+        width: 85vw;
+    }
+    
+    .label {
+        font-size: 3.5rem;
+    }
+    
+    .menu {
+        font-size: 2rem;
+        width: 80%;
+    }
+    
+    input, button, .text {
+        font-size: 2rem;
+    }
+    
+    .App {
+        gap: 5rem;
+    
+        #header {
+            margin-top: 3rem;
+    
+            .title {
+                font-size: 5.4rem;
+            }
+        }
+    
+        #currencies {
+            gap: 3rem;
+    
+            .icon {
+                height: 8rem;
+                width: 8rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 3%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 5rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 60%;
+                    }
+    
+                    button {
+                        width: 35%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+// Laptop sizing.
+@media (min-width: 1025px) {
+    #currencies, #amounts {
+        width: 40vw;
+    }
+    
+    .label {
+        font-size: 2rem;
+    }
+    
+    .menu {
+        font-size: 1rem;
+        width: 85%;
+    }
+    
+    input, button, .text {
+        font-size: 1rem;
+    }
+    
+    .App {
+        gap: 3rem;
+    
+        #header {
+            margin-top: 1.5rem;
+    
+            .title {
+                font-size: 5rem;
+            }
+        }
+    
+        #currencies {
+            gap: 1rem;
+    
+            .icon {
+                height: 5rem;
+                width: 5rem;
+            }
+    
+            #to {
+                .label {
+                    margin-left: 2.5%;
+                }
+            }
+        }
+    
+        #amounts {
+            gap: 2rem;
+    
+            #initial {
+                .form {
+                    input {
+                        width: 70%;
+                    }
+    
+                    button {
+                        width: 25%;
+                    }
+                }
+            }
+    
+            #convert {
+                gap: 1rem;
+            }
+        }
     }
 }
