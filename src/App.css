@@ -1,0 +1,491 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Mukta:wght@200&family=Playfair+Display:ital,wght@1,700&display=swap");
+#currencies, #amounts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.label {
+  font-family: "Mukta", sans-serif;
+  font-weight: 200px;
+}
+
+.menu {
+  font-family: "Lato", sans-serif;
+  font-weight: 300px;
+}
+
+input, button, .text {
+  font-family: "Lato", sans-serif;
+}
+
+/*
+Individual styling using Sass nesting.
+The App class is the parent tag holding all of the return information.
+*/
+.App {
+  height: 100vh;
+  background: black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App #header {
+  text-align: center;
+}
+
+.App #header .title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700px;
+  font-style: italic;
+}
+
+.App #currencies #from, .App #currencies #to {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.App #currencies .icon {
+  -webkit-transition: 0.7s ease;
+  transition: 0.7s ease;
+}
+
+.App #currencies .icon:hover {
+  color: #1fec1f;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  -webkit-animation: rotation infinite 3s linear;
+          animation: rotation infinite 3s linear;
+  cursor: pointer;
+}
+
+.App #amounts #initial, .App #amounts #convert {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.App #amounts #initial {
+  gap: 1rem;
+}
+
+.App #amounts #initial .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 5%;
+}
+
+.App #amounts #initial .form input {
+  font-weight: 300px;
+}
+
+.App #amounts #initial .form button {
+  font-weight: bold;
+}
+
+.App #amounts #initial .form button:hover {
+  background: #1fec1f;
+  -webkit-transition: 0.6s ease;
+  transition: 0.6s ease;
+  cursor: pointer;
+}
+
+.App #amounts #convert div {
+  background: white;
+}
+
+.App #amounts #convert div .text {
+  color: black;
+  font-weight: 300px;
+  margin-left: 2%;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 359px) {
+  #currencies, #amounts {
+    width: 85vw;
+  }
+  .label {
+    font-size: 1.75rem;
+  }
+  .menu {
+    font-size: 1.2rem;
+    width: 65%;
+  }
+  input, button, .text {
+    font-size: 1.2rem;
+  }
+  .App {
+    gap: 2.5rem;
+  }
+  .App #header {
+    margin-top: 1rem;
+  }
+  .App #header .title {
+    font-size: 2.8rem;
+  }
+  .App #currencies {
+    gap: 1.5rem;
+  }
+  .App #currencies .icon {
+    height: 3rem;
+    width: 3rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 6%;
+  }
+  .App #amounts {
+    gap: 2rem;
+  }
+  .App #amounts #initial .form input {
+    width: 60%;
+  }
+  .App #amounts #initial .form button {
+    width: 35%;
+  }
+  .App #amounts #convert {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 389px) {
+  #currencies, #amounts {
+    width: 85vw;
+  }
+  .label {
+    font-size: 1.75rem;
+  }
+  .menu {
+    font-size: 1.2rem;
+    width: 73%;
+  }
+  input, button, .text {
+    font-size: 1.2rem;
+  }
+  .App {
+    gap: 2rem;
+  }
+  .App #header {
+    margin-top: 0.5rem;
+  }
+  .App #header .title {
+    font-size: 3.8rem;
+  }
+  .App #currencies {
+    gap: 1rem;
+  }
+  .App #currencies .icon {
+    height: 4rem;
+    width: 4rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 6%;
+  }
+  .App #amounts {
+    gap: 1.5rem;
+  }
+  .App #amounts #initial .form input {
+    width: 60%;
+  }
+  .App #amounts #initial .form button {
+    width: 35%;
+  }
+  .App #amounts #convert {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 390px) and (max-width: 539px) {
+  #currencies, #amounts {
+    width: 85vw;
+  }
+  .label {
+    font-size: 1.75rem;
+  }
+  .menu {
+    font-size: 1.2rem;
+    width: 75%;
+  }
+  input, button, .text {
+    font-size: 1.2rem;
+  }
+  .App {
+    gap: 2rem;
+  }
+  .App #header {
+    margin-top: 0.5rem;
+  }
+  .App #header .title {
+    font-size: 4.4rem;
+  }
+  .App #currencies {
+    gap: 1rem;
+  }
+  .App #currencies .icon {
+    height: 6rem;
+    width: 6rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 5%;
+  }
+  .App #amounts {
+    gap: 1.5rem;
+  }
+  .App #amounts #initial .form input {
+    width: 60%;
+  }
+  .App #amounts #initial .form button {
+    width: 35%;
+  }
+  .App #amounts #convert {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 767px) {
+  #currencies, #amounts {
+    width: 85vw;
+  }
+  .label {
+    font-size: 1.75rem;
+  }
+  .menu {
+    font-size: 1.2rem;
+    width: 80%;
+  }
+  input, button, .text {
+    font-size: 1.2rem;
+  }
+  .App {
+    gap: 3rem;
+  }
+  .App #header {
+    margin-top: 2rem;
+  }
+  .App #header .title {
+    font-size: 3.3rem;
+  }
+  .App #currencies {
+    gap: 2rem;
+  }
+  .App #currencies .icon {
+    height: 5rem;
+    width: 5rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 3%;
+  }
+  .App #amounts {
+    gap: 2rem;
+  }
+  .App #amounts #initial .form input {
+    width: 60%;
+  }
+  .App #amounts #initial .form button {
+    width: 35%;
+  }
+  .App #amounts #convert {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 911px) {
+  #currencies, #amounts {
+    width: 85vw;
+  }
+  .label {
+    font-size: 2.5rem;
+  }
+  .menu {
+    font-size: 1.8rem;
+    width: 80%;
+  }
+  input, button, .text {
+    font-size: 1.8rem;
+  }
+  .App {
+    gap: 3rem;
+  }
+  .App #header {
+    margin-top: 2rem;
+  }
+  .App #header .title {
+    font-size: 4.6rem;
+  }
+  .App #currencies {
+    gap: 2rem;
+  }
+  .App #currencies .icon {
+    height: 8rem;
+    width: 8rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 3%;
+  }
+  .App #amounts {
+    gap: 2rem;
+  }
+  .App #amounts #initial .form input {
+    width: 60%;
+  }
+  .App #amounts #initial .form button {
+    width: 35%;
+  }
+  .App #amounts #convert {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 912px) and (max-width: 1024px) {
+  #currencies, #amounts {
+    width: 85vw;
+  }
+  .label {
+    font-size: 3.5rem;
+  }
+  .menu {
+    font-size: 2rem;
+    width: 80%;
+  }
+  input, button, .text {
+    font-size: 2rem;
+  }
+  .App {
+    gap: 5rem;
+  }
+  .App #header {
+    margin-top: 3rem;
+  }
+  .App #header .title {
+    font-size: 5.4rem;
+  }
+  .App #currencies {
+    gap: 3rem;
+  }
+  .App #currencies .icon {
+    height: 8rem;
+    width: 8rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 3%;
+  }
+  .App #amounts {
+    gap: 5rem;
+  }
+  .App #amounts #initial .form input {
+    width: 60%;
+  }
+  .App #amounts #initial .form button {
+    width: 35%;
+  }
+  .App #amounts #convert {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  #currencies, #amounts {
+    width: 40vw;
+  }
+  .label {
+    font-size: 2rem;
+  }
+  .menu {
+    font-size: 1rem;
+    width: 85%;
+  }
+  input, button, .text {
+    font-size: 1rem;
+  }
+  .App {
+    gap: 3rem;
+  }
+  .App #header {
+    margin-top: 1.5rem;
+  }
+  .App #header .title {
+    font-size: 5rem;
+  }
+  .App #currencies {
+    gap: 1rem;
+  }
+  .App #currencies .icon {
+    height: 5rem;
+    width: 5rem;
+  }
+  .App #currencies #to .label {
+    margin-left: 2.5%;
+  }
+  .App #amounts {
+    gap: 2rem;
+  }
+  .App #amounts #initial .form input {
+    width: 70%;
+  }
+  .App #amounts #initial .form button {
+    width: 25%;
+  }
+  .App #amounts #convert {
+    gap: 1rem;
+  }
+}
+/*# sourceMappingURL=App.css.map */
